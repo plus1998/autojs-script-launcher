@@ -1,5 +1,5 @@
 // 读取云端脚本
-let {scriptUrl} = require('./config');
+let { scriptUrl } = require('./config');
 
 // 图标
 let stopIcon = require('./stopIcon');
@@ -13,8 +13,11 @@ let stop = () => {
 };
 
 try {
-  let script = http.get(scriptUrl).body.string();
-  e = engines.execScript('脚本名称', script);
+  // 不阻塞主进程
+  threads.start(() => {
+    let script = http.get(scriptUrl).body.string();
+    e = engines.execScript('脚本名称', script);
+  })
   // 屏幕低亮度常量
   device.keepScreenDim();
 
