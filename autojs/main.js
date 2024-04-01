@@ -9,7 +9,7 @@ let e;
 let stop = () => {
   toast('停止');
   e.getEngine().forceStop();
-  finish();
+  exit();
 };
 
 try {
@@ -28,7 +28,7 @@ try {
   menuWindow.stop.click(stop);
 } catch (error) {
   alert(error);
-  finish();
+  exit();
 }
 
 // 启动脚本
@@ -38,7 +38,7 @@ threads.start(() => {
     e = engines.execScript('脚本名称', script);
   } catch (error) {
     alert(error);
-    finish();
+    exit();
   }
 });
 // 屏幕低亮度常量
@@ -49,7 +49,7 @@ setInterval(() => {
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
-    finish();
+    exit();
   }
 }, 1000);
 
