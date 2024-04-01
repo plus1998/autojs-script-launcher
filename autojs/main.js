@@ -9,18 +9,10 @@ let e;
 let stop = () => {
   toast('停止');
   e.getEngine().forceStop();
-  exit();
+  finish();
 };
 
 try {
-  // 不阻塞主进程
-  threads.start(() => {
-    let script = http.get(scriptUrl).body.string();
-    e = engines.execScript('脚本名称', script);
-  })
-  // 屏幕低亮度常量
-  device.keepScreenDim();
-
   // 悬浮窗
   if (!floaty.checkPermission()) {
     // 没有悬浮窗权限，提示用户并跳转请求
@@ -36,15 +28,28 @@ try {
   menuWindow.stop.click(stop);
 } catch (error) {
   alert(error);
-  exit();
+  finish();
 }
+
+// 启动脚本
+threads.start(() => {
+  try {
+    let script = http.get(scriptUrl).body.string();
+    e = engines.execScript('脚本名称', script);
+  } catch (error) {
+    alert(error);
+    finish();
+  }
+});
+// 屏幕低亮度常量
+device.keepScreenDim();
 
 // 检查
 setInterval(() => {
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
-    exit();
+    finish();
   }
 }, 1000);
 
