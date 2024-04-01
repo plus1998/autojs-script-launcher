@@ -1,0 +1,10 @@
+{
+    "name": "示例",
+    "main": "main.js",
+    "ignore": [
+        "build"
+    ],
+    "packageName": "com.happyplus.example",
+    "versionName": "1.0.0",
+    "versionCode": 1
+}
