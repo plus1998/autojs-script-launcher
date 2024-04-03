@@ -72,7 +72,7 @@ while (true) {
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
-    exit();
+    break;
   }
   sleep(1000);
 }
