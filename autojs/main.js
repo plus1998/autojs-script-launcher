@@ -32,12 +32,31 @@ try {
 }
 
 // 启动脚本
+let startTime = Date.now();
+let loading = dialogs.build({
+  title: '脚本加载中',
+  progress: {
+    max: -1,
+  },
+  cancelable: false,
+}).show();
+
 threads.start(() => {
   try {
+    // 获取脚本
     let script = http.get(scriptUrl).body.string();
+    // 动画保证
+    let costTime = Date.now() - startTime;
+    if (costTime < 1000) {
+      sleep(1000 - costTime);
+    }
     e = engines.execScript('脚本名称', script);
+    // 关闭弹窗
+    ui.post(() => {
+      loading.dismiss();
+    });
   } catch (error) {
-    alert(error);
+    alert('加载脚本失败' + error.message);
     exit();
   }
 });
@@ -46,6 +65,10 @@ device.keepScreenDim();
 
 // 检查
 setInterval(() => {
+  if (!e) {
+    // 脚本未加载
+    return;
+  }
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
