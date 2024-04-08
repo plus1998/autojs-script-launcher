@@ -65,21 +65,21 @@ device.keepScreenDim();
 
 // 检查
 let check = () => {
-  if (!e) {
-    sleep(1000);
-    return;
-  }
-  let engine = e.getEngine();
-  if (engine.isDestroyed()) {
-    toast('脚本已停止');
-    exit();
-    return;
+  if (e) {
+    let engine = e.getEngine();
+    if (engine) {
+      if (engine.isDestroyed()) {
+        toast('脚本已停止');
+        exit();
+        return;
+      }
+    }
   }
   setTimeout(check, 1000);
 };
-
+// do
 check();
 
 setInterval(() => {
-  //
-}, 1000);
+  // ignore
+}, 3000);
