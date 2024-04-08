@@ -78,3 +78,7 @@ let check = () => {
 };
 
 check();
+
+setInterval(() => {
+  //
+}, 1000);
