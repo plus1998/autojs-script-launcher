@@ -64,15 +64,17 @@ threads.start(() => {
 device.keepScreenDim();
 
 // 检查
-while (true) {
+let check = () => {
   if (!e) {
     sleep(1000);
-    continue;
+    return;
   }
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
-    break;
+    return;
   }
-  sleep(1000);
-}
+  setTimeout(check, 1000);
+};
+
+check();
