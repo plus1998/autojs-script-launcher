@@ -72,6 +72,7 @@ let check = () => {
   let engine = e.getEngine();
   if (engine.isDestroyed()) {
     toast('脚本已停止');
+    exit();
     return;
   }
   setTimeout(check, 1000);
