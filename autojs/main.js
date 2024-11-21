@@ -56,6 +56,10 @@ threads.start(() => {
       loading.dismiss();
     });
   } catch (error) {
+    // 关闭弹窗
+    ui.post(() => {
+      loading.dismiss();
+    });
     alert('加载脚本失败' + error.message);
     exit();
   }
