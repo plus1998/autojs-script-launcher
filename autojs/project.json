@@ -1,5 +1,5 @@
 {
-    "name": "示例",
+    "name": "远程脚本",
     "main": "main.js",
     "ignore": [
         "build"

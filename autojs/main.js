@@ -1,6 +1,3 @@
-// 读取云端脚本
-let { scriptUrl } = require('./config');
-
 // 图标
 let stopIcon = require('./stopIcon');
 
@@ -41,28 +38,31 @@ let loading = dialogs.build({
   cancelable: false,
 }).show();
 
-threads.start(() => {
-  try {
-    // 获取脚本
-    let script = http.get(scriptUrl).body.string();
-    // 动画保证
-    let costTime = Date.now() - startTime;
-    if (costTime < 1000) {
-      sleep(1000 - costTime);
+// 输入服务器地址
+rawInput("请输入脚本地址", "http://192.168.31.117:4060/autojs/start", scriptUrl => {
+  threads.start(() => {
+    try {
+      // 获取脚本
+      let script = http.get(scriptUrl).body.string();
+      // 动画保证
+      let costTime = Date.now() - startTime;
+      if (costTime < 1000) {
+        sleep(1000 - costTime);
+      }
+      e = engines.execScript('脚本名称', script);
+      // 关闭弹窗
+      ui.post(() => {
+        loading.dismiss();
+      });
+    } catch (error) {
+      // 关闭弹窗
+      ui.post(() => {
+        loading.dismiss();
+      });
+      alert('加载脚本失败' + error.message);
+      exit();
     }
-    e = engines.execScript('脚本名称', script);
-    // 关闭弹窗
-    ui.post(() => {
-      loading.dismiss();
-    });
-  } catch (error) {
-    // 关闭弹窗
-    ui.post(() => {
-      loading.dismiss();
-    });
-    alert('加载脚本失败' + error.message);
-    exit();
-  }
+  });
 });
 // 屏幕低亮度常量
 device.keepScreenDim();
