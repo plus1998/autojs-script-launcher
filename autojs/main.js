@@ -39,7 +39,8 @@ let loading = dialogs.build({
 }).show();
 
 // 输入服务器地址
-rawInput("请输入脚本地址", "http://192.168.31.117:4060/autojs/start", scriptUrl => {
+rawInput("请输入主机地址", "192.168.31.117", server => {
+  const scriptUrl = 'http://' + server + ':4060/autojs/start';
   threads.start(() => {
     try {
       // 获取脚本

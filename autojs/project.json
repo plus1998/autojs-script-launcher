@@ -1,10 +1,10 @@
 {
-    "name": "远程脚本",
+    "name": "智能中控台",
     "main": "main.js",
     "ignore": [
         "build"
     ],
-    "packageName": "com.happyplus.example",
+    "packageName": "com.happyplus.znzkt",
     "versionName": "1.0.0",
     "versionCode": 1
 }
