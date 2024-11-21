@@ -27,7 +27,7 @@
       "displaySplash": true,
       "hideAccessibilityServices": false,
       "hideLauncher": false,
-      "hideLogs": true,
+      "hideLogs": false,
       "stableMode": false,
       "volumeUpcontrol": false,
       "permissions": [
