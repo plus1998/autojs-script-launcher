@@ -1,10 +1,58 @@
 {
-    "name": "智能中控台",
-    "main": "main.js",
-    "ignore": [
-        "build"
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
     ],
+    "assets": [
+      {
+        "form": "/storage/emulated/0/脚本/autojs",
+        "to": "/project"
+      }
+    ],
+    "buildDir": "build",
+    "build": {
+      "build_id": null,
+      "build_number": 0,
+      "build_time": 0
+    },
+    "useFeatures": [],
+    "icon": "res/logo.png",
+    "ignoredDirs": [
+      "build"
+    ],
+    "encrypt-code": false,
+    "launchConfig": {
+      "displaySplash": true,
+      "hideAccessibilityServices": false,
+      "hideLauncher": false,
+      "hideLogs": true,
+      "stableMode": false,
+      "volumeUpcontrol": false,
+      "permissions": [
+        "accessibility_services",
+        "draw_overlay"
+      ],
+      "serviceDesc": "使脚本自动操作(点击、长按、滑动等)所需，若关闭则只能执行不涉及自动操作的脚本。",
+      "splashIcon": "res/splashIcon.png",
+      "splashText": "智能中控台-气氛组"
+    },
+    "libs": [
+      "libjackpal-androidterm5.so",
+      "libjackpal-termexec2.so"
+    ],
+    "main": "main.js",
+    "name": "智能中控台",
+    "outputPath": "/storage/emulated/0/脚本/autojs/build",
     "packageName": "com.happyplus.znzkt",
-    "versionName": "1.0.0",
-    "versionCode": 1
-}
+    "projectDirectory": "/storage/emulated/0/脚本/autojs",
+    "scripts": {},
+    "signingConfig": {
+      "alias": null,
+      "keystore": null
+    },
+    "sourcePath": "/storage/emulated/0/脚本/autojs/main.js",
+    "versionCode": 1,
+    "versionName": "1.0.0"
+  }
