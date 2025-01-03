@@ -1,6 +1,8 @@
 // 图标
 let stopIcon = require('./stopIcon');
 
+let storage = storages.create("happyplus-znzkt");
+
 let e;
 
 let stop = () => {
@@ -39,12 +41,14 @@ let loading = dialogs.build({
 }).show();
 
 // 输入服务器地址
-rawInput("请输入主机地址", "192.168.31.117", server => {
+rawInput("请输入主机地址", storage.get("host") || '192.168.', server => {
   const scriptUrl = 'http://' + server + ':4060/autojs/start';
   threads.start(() => {
     try {
       // 获取脚本
       let script = http.get(scriptUrl).body.string();
+      // 保存host
+      storage.put('host', server);
       // 动画保证
       let costTime = Date.now() - startTime;
       if (costTime < 1000) {
